@@ -173,15 +173,14 @@ func (s *scaffold) genFormStaticFle(d data) error {
 	walkerFuc := func(path string, f os.FileInfo, err error) error {
 
 		if f.Mode().IsRegular() == true {
-
+			print("PROJECT PATH TO CREATE")
+			println(d.AbsGenProjectPath)
 			src, err := os.Open(path)
 			if err != nil {
 				return pkgErr.WithStack(err)
 			}
 			defer src.Close()
-
 			basepath := filepath.Join(Gopath, GoScaffoldPath, "static")
-			println(basepath)
 			distRelFilePath, err := filepath.Rel(basepath, path)
 			if err != nil {
 				return pkgErr.WithStack(err)
