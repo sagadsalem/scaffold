@@ -2,12 +2,10 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"os"
-	"path/filepath"
-
 	"github.com/sagadsalem/scaffold/scaffold"
 	"github.com/urfave/cli"
+	"log"
+	"os"
 )
 
 func main() {
@@ -21,12 +19,8 @@ func main() {
 			Usage:   "Generate scaffold project layout",
 			Action: func(c *cli.Context) error {
 				projectPath := c.Args().First()
-				currDir, err := filepath.Abs(filepath.Dir(projectPath))
-				if err != nil {
-					return err
-				}
-				println(currDir)
-				err = scaffold.New(false).Generate(currDir)
+				println("ProjectPath" + projectPath)
+				err := scaffold.New(false).Generate(projectPath)
 				//fmt.Printf("error:%+v\n", err)
 				if err == nil {
 					fmt.Println("Success Created. Please execute `make up` to start service.")
