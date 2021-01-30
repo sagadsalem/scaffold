@@ -18,17 +18,18 @@ func main() {
 		{
 			Name:    "init",
 			Aliases: []string{"i"},
-			Usage:   " Generate scaffold project layout",
+			Usage:   "Generate scaffold project layout",
 			Action: func(c *cli.Context) error {
-				currDir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+				projectPath := c.Args().First()
+				currDir, err := filepath.Abs(filepath.Dir(projectPath))
 				if err != nil {
 					return err
 				}
-
+				
 				err = scaffold.New(false).Generate(currDir)
 				//fmt.Printf("error:%+v\n", err)
 				if err == nil {
-					fmt.Println("Success Created. Please excute `make up` to start service.")
+					fmt.Println("Success Created. Please execute `make up` to start service.")
 				}
 
 				return err
