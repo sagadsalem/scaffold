@@ -36,7 +36,7 @@ The following is Go project layout scaffold generated:
 
  Download scaffold by using:
 ```sh
-$ go get -u github.com/catchplay/scaffold
+$ go get -u github.com/sagadsalem/scaffold
 ```
 
 ## Create a new project

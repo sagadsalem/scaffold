@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	GoScaffoldPath = "src/github.com/catchplay/scaffold"
+	GoScaffoldPath = "src/scaffold"
 )
 
 func init() {
@@ -171,7 +171,9 @@ func (templEngine *templateEngine) visit(path string, f os.FileInfo, err error) 
 
 func (s *scaffold) genFormStaticFle(d data) error {
 	walkerFuc := func(path string, f os.FileInfo, err error) error {
+
 		if f.Mode().IsRegular() == true {
+
 			src, err := os.Open(path)
 			if err != nil {
 				return pkgErr.WithStack(err)
@@ -179,6 +181,7 @@ func (s *scaffold) genFormStaticFle(d data) error {
 			defer src.Close()
 
 			basepath := filepath.Join(Gopath, GoScaffoldPath, "static")
+			println(basepath)
 			distRelFilePath, err := filepath.Rel(basepath, path)
 			if err != nil {
 				return pkgErr.WithStack(err)
