@@ -6,6 +6,8 @@ import (
 	"github.com/urfave/cli"
 	"log"
 	"os"
+	"path/filepath"
+	"runtime"
 )
 
 func main() {
@@ -18,9 +20,12 @@ func main() {
 			Aliases: []string{"i"},
 			Usage:   "Generate scaffold project layout",
 			Action: func(c *cli.Context) error {
-				projectPath := c.Args().First()
-				println("ProjectPath" + projectPath)
-				err := scaffold.New(false).Generate(projectPath)
+
+				_, b, _, _ := runtime.Caller(0)
+				basepath := filepath.Dir(b)
+
+				println("files added to the current directory " + basepath)
+				err := scaffold.New(false).Generate(basepath)
 				//fmt.Printf("error:%+v\n", err)
 				if err == nil {
 					fmt.Println("Success Created. Please execute `make up` to start service.")
