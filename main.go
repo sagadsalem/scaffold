@@ -25,7 +25,7 @@ func main() {
 				if err != nil {
 					return err
 				}
-				
+				println(currDir)
 				err = scaffold.New(false).Generate(currDir)
 				//fmt.Printf("error:%+v\n", err)
 				if err == nil {
